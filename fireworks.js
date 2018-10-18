@@ -1,8 +1,19 @@
 /* Initialize Canvas */
-const canvas = document.querySelector('#fireworks');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-const c = canvas.getContext('2d');
+const canvas = document.querySelector('#fireworks'), 
+    c = canvas.getContext('2d'),
+    iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+/* Fixes width=0 bug for iOS */
+function getInnerWidth() {
+    return (iOS) ? screen.width : window.innerWidth;
+}
+
+function getInnerHeight() {
+    return (iOS) ? screen.height : window.innerHeight;
+}
+
+canvas.width = getInnerWidth();
+canvas.height = getInnerHeight();
 
 /* Constants */
 const mouse = {
@@ -23,8 +34,8 @@ addEventListener("mousemove", e => {
 addEventListener("click", () => mainDisplay.addFirework(new Firework(mouse.x, mouse.y)));
 
 addEventListener("resize", () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    canvas.width = getInnerWidth();
+    canvas.height = getInnerHeight();
 });
 
 /* Utility */
