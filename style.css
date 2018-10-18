@@ -1,6 +1,7 @@
 body {
     margin: 0;
     padding: 0;
+    overflow:hidden;
 }
 
 .canvas-container {
@@ -11,6 +12,4 @@ body {
 
 canvas {
     display: block;
-    width: inherit;
-    height: inherit;
 }

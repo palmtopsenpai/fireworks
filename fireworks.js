@@ -17,34 +17,30 @@ canvas.width = getInnerWidth();
 canvas.height = getInnerHeight();
 
 /* Constants */
-
 const FRICTION = 0.95;
 const GRAVITY = 0.5;
 const TWOPI = Math.PI * 2;
 
 /* Event Listeners */
-addEventListener(touchOrClick, e => {
+canvas.addEventListener(touchOrClick, e => {
   e.stopPropagation;
   e.preventDefault;
   if (touchOrClick === "click") {
     mainDisplay.addFirework(new Firework(e.clientX, e.clientY));
   } else {
+    //Necessary for iOS...
     mainDisplay.addFirework(
-      new Firework(e.targetTouches[0].pageX, e.targetTouches[0].pageY)
+      new Firework(e.touches[0].clientX, e.touches[0].clientY)
     );
   }
 });
 
-addEventListener("resize", () => {
+canvas.addEventListener("resize", () => {
   canvas.width = getInnerWidth();
   canvas.height = getInnerHeight();
 });
 
 /* Utility */
-function getTouchX() {}
-
-function getTouchY() {}
-
 function random(min, max) {
   return Math.random() * (max - min) + min;
 }
