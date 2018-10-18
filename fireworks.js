@@ -21,8 +21,8 @@ const TWOPI = Math.PI * 2;
 window.addEventListener("load", setSize);
 
 canvas.addEventListener(touchOrClick, e => {
-  e.stopPropagation;
-  e.preventDefault;
+  e.stopPropagation();
+  e.preventDefault();
   if (touchOrClick === "click") {
     mainDisplay.addFirework(new Firework(e.clientX, e.clientY));
   } else {
