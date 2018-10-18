@@ -6,6 +6,7 @@ body {
 
 canvas {
   display: block;
+  touch-action: manipulation;
   background: linear-gradient(#101730, #292052);
   height: 100%;
 }
