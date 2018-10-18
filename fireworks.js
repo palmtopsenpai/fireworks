@@ -17,25 +17,22 @@ canvas.width = getInnerWidth();
 canvas.height = getInnerHeight();
 
 /* Constants */
-const mouse = {
-  x: 0,
-  y: 0
-};
 
 const FRICTION = 0.95;
 const GRAVITY = 0.5;
 const TWOPI = Math.PI * 2;
 
 /* Event Listeners */
-addEventListener("mousemove", e => {
-  mouse.x = e.clientX;
-  mouse.y = e.clientY;
-});
-
 addEventListener(touchOrClick, e => {
   e.stopPropagation;
   e.preventDefault;
-  mainDisplay.addFirework(new Firework(e.clientX, e.clientY));
+  if (touchOrClick === "click") {
+    mainDisplay.addFirework(new Firework(e.clientX, e.clientY));
+  } else {
+    mainDisplay.addFirework(
+      new Firework(e.targetTouches[0].pageX, e.targetTouches[0].pageY)
+    );
+  }
 });
 
 addEventListener("resize", () => {
@@ -44,6 +41,10 @@ addEventListener("resize", () => {
 });
 
 /* Utility */
+function getTouchX() {}
+
+function getTouchY() {}
+
 function random(min, max) {
   return Math.random() * (max - min) + min;
 }
