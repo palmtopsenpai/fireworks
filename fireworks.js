@@ -1,20 +1,16 @@
 /* Initialize Canvas */
-const canvas = document.querySelector("#fireworks"),
-  c = canvas.getContext("2d"),
+const canvas = document.createElement("canvas");
+document.body.appendChild(canvas);
+
+const c = canvas.getContext("2d"),
   iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream,
   touchOrClick = "ontouchstart" in window ? "touchstart" : "click";
 
 /* Fixes width=0 bug for iOS */
-function getInnerWidth() {
-  return iOS ? screen.width : window.innerWidth;
+function setSize() {
+    canvas.width = iOS ? screen.width : window.innerWidth;
+    canvas.height = iOS ? screen.height : window.innerHeight;
 }
-
-function getInnerHeight() {
-  return iOS ? screen.height : window.innerHeight;
-}
-
-canvas.width = getInnerWidth();
-canvas.height = getInnerHeight();
 
 /* Constants */
 const FRICTION = 0.95;
@@ -22,6 +18,8 @@ const GRAVITY = 0.5;
 const TWOPI = Math.PI * 2;
 
 /* Event Listeners */
+window.addEventListener("load", setSize);
+
 canvas.addEventListener(touchOrClick, e => {
   e.stopPropagation;
   e.preventDefault;
@@ -35,10 +33,7 @@ canvas.addEventListener(touchOrClick, e => {
   }
 });
 
-canvas.addEventListener("resize", () => {
-  canvas.width = getInnerWidth();
-  canvas.height = getInnerHeight();
-});
+window.addEventListener("resize", setSize);
 
 /* Utility */
 function random(min, max) {
