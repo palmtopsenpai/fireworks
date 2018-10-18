@@ -1,11 +1,16 @@
 body {
-    background: linear-gradient(#101730, #292052);
     margin: 0;
     padding: 0;
 }
 
-canvas {
-    display: block;
+.canvas-container {
+    background: linear-gradient(#101730, #292052);
     width: 100%;
     height: 100%;
+}
+
+canvas {
+    display: block;
+    width: inherit;
+    height: inherit;
 }
